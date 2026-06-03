@@ -1,0 +1,37 @@
+{
+  "name": "engage-sphere",
+  "version": "1.0.0",
+  "description": "Sample project with an Express.js backend and a React frontend.",
+  "scripts": {
+    "install:frontend": "cd frontend && npm install",
+    "install:backend": "cd backend && npm install",
+    "start:frontend": "cd frontend && npm start",
+    "start:backend": "cd backend && npm start",
+    "intall:all": "concurrently \"npm run install:frontend\" \"npm run install:backend\"",
+    "start:all": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
+    "install:and:start:all": "npm run intall:all && npm run start:all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wlsf82/EngageSphere.git"
+  },
+  "author": "Walmyr Filho <wlsf82@gmail.com> (https://walmyr.dev)",
+  "license": "MIT",
+  "homepage": "https://github.com/wlsf82/EngageSphere/blob/main/README.md",
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "concurrently": "^10.0.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
