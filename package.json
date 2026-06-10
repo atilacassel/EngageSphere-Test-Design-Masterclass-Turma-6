@@ -9,7 +9,9 @@
     "start:backend": "cd backend && npm start",
     "intall:all": "concurrently \"npm run install:frontend\" \"npm run install:backend\"",
     "start:all": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
-    "install:and:start:all": "npm run intall:all && npm run start:all"
+    "install:and:start:all": "npm run intall:all && npm run start:all",
+    "cy:open": "cypress open", 
+    "cy:run": "cypress run"
   },
   "repository": {
     "type": "git",
@@ -20,7 +22,8 @@
   "homepage": "https://github.com/wlsf82/EngageSphere/blob/main/README.md",
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "concurrently": "^10.0.3"
+    "concurrently": "^10.0.3",
+    "cypress": "^15.17.0"
   },
   "browserslist": {
     "production": [
