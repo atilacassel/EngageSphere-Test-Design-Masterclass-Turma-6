@@ -1,9 +1,12 @@
 describe('GET /customers', () => {
+  let apiUrl
+
+  beforeEach(() => {
+    apiUrl = Cypress.expose('apiUrl')
+  })
+
   it('should return a list of customers', () => {
-    cy.request({
-      method: 'GET',
-      url: `${Cypress.env('apiUrl')}/customers`,
-    }).then((response) => {
+    cy.request('GET', `${apiUrl}/customers`).then((response) => {
       expect(response.status).to.eq(200)
       expect(response.body).to.have.property('customers')
       expect(response.body.customers).to.be.an('array')
@@ -20,7 +23,7 @@ describe('GET /customers', () => {
   it('should return 400 for invalid page parameter', () => {
     cy.request({
       method: 'GET',
-      url: `${Cypress.env('apiUrl')}/customers?page=-1`,
+      url: `${apiUrl}/customers?page=-1`,
       failOnStatusCode: false,
     }).then((response) => {
       expect(response.status).to.eq(400)
