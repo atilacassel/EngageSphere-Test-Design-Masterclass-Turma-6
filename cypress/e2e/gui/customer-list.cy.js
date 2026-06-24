@@ -51,7 +51,7 @@ describe('EngageSphere - Customer List', () => {
     cy.get('[data-testid="table"]').should('be.visible')
   })
 
-  it.only('should display the footer with the correct text and links', () => {
+  it('should display the footer with the correct text and links', () => {
     cy.get('[data-testid="footer"]')
       .should('contain', 'Copyright 2026 - Talking About Testing')
       .and('be.visible')
@@ -75,5 +75,17 @@ describe('EngageSphere - Customer List', () => {
     cy.contains('a', 'YouTube')
       .should('have.attr', 'href', 'https://youtube.com/@talkingabouttesting')
       .and('have.attr', 'target', '_blank')
+  })
+
+  it('should display the default greeting when the name field is empty', () => {
+    cy.get('[data-testid="name"]').clear()
+
+    cy.get('[data-testid="table"]').should('contain.text', 'Hi there!')
+  })
+
+  it('should display the name when provided', () => {
+    cy.get('[data-testid="name"]').type('Átila')
+
+    cy.get('[data-testid="table"]').should('contain.text', 'Hi Átila!')
   })
 })
