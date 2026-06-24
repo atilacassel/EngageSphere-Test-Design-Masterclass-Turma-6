@@ -1,9 +1,5 @@
 describe('GET /customers', () => {
-  let apiUrl
-
-  beforeEach(() => {
-    apiUrl = Cypress.expose('apiUrl')
-  })
+  const apiUrl = Cypress.expose('apiUrl')
 
   it('should return a list of customers', () => {
     cy.request('GET', `${apiUrl}/customers`).then(({ status, body }) => {
