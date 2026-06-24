@@ -17,7 +17,7 @@ describe('EngageSphere - Customer List', () => {
   })
 
   it('should return to the customer list by clicking the Back button', () => {
-    cy.get(':nth-child(1) > :nth-child(6) > strong > button').click()
+    cy.contains('button', 'View').click()
     cy.contains('button', 'Back').click()
 
     cy.get('[data-testid="table"]').should('be.visible')
