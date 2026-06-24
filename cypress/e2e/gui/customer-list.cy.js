@@ -3,7 +3,6 @@ describe('EngageSphere - Customer List', () => {
   beforeEach(() => {
     cy.setCookie('cookieConsent', 'accepted')
     cy.visit('/')
-    // cy.contains('button', 'Accept').click()
   })
 
   it('should keep the selected filters when returns from the details page', () => {
