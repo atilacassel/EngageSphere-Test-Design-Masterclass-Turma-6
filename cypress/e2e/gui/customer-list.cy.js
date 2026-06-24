@@ -9,6 +9,7 @@ describe('EngageSphere - Customer List', () => {
     cy.get('[data-testid="size-filter"]').select('Small')
     cy.get('[data-testid="industry-filter"]').select('HR')
     cy.contains('button', 'View').click()
+
     cy.contains('button', 'Back').click()
 
     cy.get('[data-testid="size-filter"]').should('have.value', 'Small')
