@@ -50,4 +50,30 @@ describe('EngageSphere - Customer List', () => {
 
     cy.get('[data-testid="table"]').should('be.visible')
   })
+
+  it.only('should display the footer with the correct text and links', () => {
+    cy.get('[data-testid="footer"]')
+      .should('contain', 'Copyright 2026 - Talking About Testing')
+      .and('be.visible')
+
+    cy.contains('a', 'Podcast')
+      .should(
+        'have.attr',
+        'href',
+        'https://open.spotify.com/show/5HFlqWkk6qtgJquUixyuKo',
+      )
+      .and('have.attr', 'target', '_blank')
+
+    cy.contains('a', 'Courses')
+      .should('have.attr', 'href', 'https://talking-about-testing.vercel.app/')
+      .and('have.attr', 'target', '_blank')
+
+    cy.contains('a', 'Blog')
+      .should('have.attr', 'href', 'https://talkingabouttesting.com')
+      .and('have.attr', 'target', '_blank')
+
+    cy.contains('a', 'YouTube')
+      .should('have.attr', 'href', 'https://youtube.com/@talkingabouttesting')
+      .and('have.attr', 'target', '_blank')
+  })
 })
