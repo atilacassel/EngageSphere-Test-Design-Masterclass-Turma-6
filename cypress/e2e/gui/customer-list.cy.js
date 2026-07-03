@@ -1,11 +1,37 @@
 describe('EngageSphere - Customer List', () => {
   beforeEach(() => {
     cy.setCookie('cookieConsent', 'accepted')
+    
+    cy.intercept('GET', '**/customers*', {
+      statusCode: 200,
+        body: {
+          customers: [
+            {
+            id: 1,
+            name: 'Cliente Padrão',
+            employees: 100,
+            industry: 'Retail',
+            contactInfo: null,
+            address: {
+              street: 'Rua Principal',
+              city: 'Cidade',
+              state: 'Estado',
+              zipCode: '00000',
+              country: 'Country'
+            },
+            size: 'Medium'
+          }
+          ],
+          pageInfo: { currentPage: 1, totalPages: 1, totalCustomers: 0 }
+        }
+    }).as('getInitialCustomers')
+
     cy.visit('/')
+    cy.wait('@getInitialCustomers')
   })
 
   it('should keep the selected filters when returns from the details page', () => {
-    cy.intercept('GET', '**/customers*', {
+    cy.intercept('GET', '**/customers?*size=Small&industry=HR*', {
       statusCode: 200,
       body: {
         customers: [
@@ -33,10 +59,11 @@ describe('EngageSphere - Customer List', () => {
       },
     }).as('getFilteredCustomers')
 
-    cy.wait('@getFilteredCustomers')
-
     cy.get('[data-testid="size-filter"]').select('Small')
     cy.get('[data-testid="industry-filter"]').select('HR')
+
+    cy.wait('@getFilteredCustomers')
+
     cy.contains('button', 'View').click()
     cy.contains('button', 'Back').click()
 
