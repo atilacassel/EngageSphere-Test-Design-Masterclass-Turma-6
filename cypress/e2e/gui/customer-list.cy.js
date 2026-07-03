@@ -1,12 +1,12 @@
 describe('EngageSphere - Customer List', () => {
   beforeEach(() => {
     cy.setCookie('cookieConsent', 'accepted')
-    
+
     cy.intercept('GET', '**/customers*', {
       statusCode: 200,
-        body: {
-          customers: [
-            {
+      body: {
+        customers: [
+          {
             id: 1,
             name: 'Cliente Padrão',
             employees: 100,
@@ -17,13 +17,13 @@ describe('EngageSphere - Customer List', () => {
               city: 'Cidade',
               state: 'Estado',
               zipCode: '00000',
-              country: 'Country'
+              country: 'Country',
             },
-            size: 'Medium'
-          }
-          ],
-          pageInfo: { currentPage: 1, totalPages: 1, totalCustomers: 0 }
-        }
+            size: 'Medium',
+          },
+        ],
+        pageInfo: { currentPage: 1, totalPages: 1, totalCustomers: 0 },
+      },
     }).as('getInitialCustomers')
 
     cy.visit('/')
@@ -88,8 +88,7 @@ describe('EngageSphere - Customer List', () => {
         'have.attr',
         'href',
         'https://open.spotify.com/show/5HFlqWkk6qtgJquUixyuKo',
-      )
-      .and('have.attr', 'target', '_blank')
+      ).and('have.attr', 'target', '_blank')
 
     cy.contains('a', 'Courses')
       .should('have.attr', 'href', 'https://talking-about-testing.vercel.app/')
@@ -108,11 +107,13 @@ describe('EngageSphere - Customer List', () => {
     cy.get('[data-testid="name"]').clear()
 
     cy.get('[data-testid="table"]').should('contain.text', 'Hi there!')
+    .should('be.visible')
   })
 
   it('should display the name when provided', () => {
     cy.get('[data-testid="name"]').type('Átila')
 
     cy.get('[data-testid="table"]').should('contain.text', 'Hi Átila!')
+    .should('be.visible')
   })
 })
